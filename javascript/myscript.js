@@ -12,6 +12,7 @@ let text01=document.getElementById('text01')
 let btn01=document.getElementById('btn01')
 let btn02=document.getElementById('btn02')
 let btn03=document.getElementById('btn03')
+let btn04=document.getElementById('btn04')
 let textarea01=document.getElementById('textarea01')
 
 
@@ -41,6 +42,14 @@ function init(){
 	btn03.onclick=function(){
 		textarea01.select()
 		document.execCommand('copy');
+	}
+	btn04.onclick=function(){
+		let fileName = "download.png";
+  		var link = document.createElement("a");
+  		document.body.appendChild(link);
+  		link.href = canvas.toDataURL();
+  		link.download = fileName;
+  		link.click();
 	}
 
 	
@@ -82,8 +91,13 @@ function readurl(input){
 	}
 }
 function click(e){
-	let data=ctx.getImageData(e.pageX+10,e.pageY,1,1)
-	text01.value='rgb('+data.data[0]+','+data.data[1]+','+data.data[2]+')'
+	let img_=document.getElementById('img01')
+	if(e.pageX+10>img_.width){
+		text01.value='none'
+	}else{
+		let data=ctx.getImageData(e.pageX+10,e.pageY,1,1)
+		text01.value='rgb('+data.data[0]+','+data.data[1]+','+data.data[2]+')'
+	}
 }
 
 

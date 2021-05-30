@@ -34,10 +34,10 @@ function grid(color='black',width=0.2,interval=10){
 }
 
 //drawer
-function drawer(array){
+function drawer(array,globel_through){
 	for (var i=0;i<array.length;i++) {
 		if(array[i].type==='rect'){
-			ctx.globalAlpha=(100-array[i].through)/100
+			ctx.globalAlpha=(100-array[i].through)/100*globel_through
 			ctx.save()
 			ctx.translate(array[i].translate.x,array[i].translate.y)
 			ctx.rotate(array[i].deg)
@@ -55,7 +55,7 @@ function drawer(array){
 			ctx.restore()
 			ctx.globalAlpha=1.0
 		}else if(array[i].type==='circle'){
-			ctx.globalAlpha=(100-array[i].through)/100
+			ctx.globalAlpha=(100-array[i].through)/100*globel_through
 			ctx.save()
 			ctx.translate(array[i].translate.x,array[i].translate.y)
 			ctx.rotate(array[i].deg)
@@ -82,7 +82,7 @@ function drawer(array){
 			ctx.restore()
 			ctx.globalAlpha=1.0
 		}else if(array[i].type==='line'){
-			ctx.globalAlpha=(100-array[i].through)/100
+			ctx.globalAlpha=(100-array[i].through)/100*globel_through
 			ctx.save()
 			ctx.translate(array[i].translate.x,array[i].translate.y)
 			ctx.rotate(array[i].deg)

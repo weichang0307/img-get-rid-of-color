@@ -32,6 +32,7 @@ let middlexy={x:0,y:0}
 
 function init(){
 	//event
+	console.log('version:2.0')
 	
 	
 
@@ -76,10 +77,12 @@ function init(){
 		points=[]
 	
 		pimg = new Image()
-		pimg.onload = function(){				
-			canvas2.width=ww
+		pimg.onload = function(){
+			canvas2.style.display='block'				
+			canvas2.style.width=this.width+'px'
+			canvas2.style.height=this.height+'px'
+			canvas2.width=this.width
 			canvas2.height=this.height
-			//ctx2.drawImage(this,0,0)
 		}
 		
 		pimg.src=canvas.toDataURL()
@@ -161,7 +164,9 @@ function readurl(input){
 			let img_=document.getElementById('img01')
 			img_.src=e.target.result
 			img_.style.display='none'			
-			canvas.width=ww
+			canvas.style.width=img_.width+'px'
+			canvas.style.height=img_.height+'px'
+			canvas.width=img_.width
 			canvas.height=img_.height
 			if(img_.width===0){
 				alert('failed to get picture.plese reopen the page')

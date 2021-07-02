@@ -1,5 +1,6 @@
 function drawexcept(img,x,y,color){
-	let currentdata=ctx.getImageData(0,0,img.width,img.height)
+	
+	let currentdata=ctx.getImageData(0,0,canvas.width,canvas.height)
 	ctx.drawImage(img,0,0)
 	let imgdata=ctx.getImageData(0,0,img.width,img.height)
 	for(let i=3;i<imgdata.data.length;i+=4){

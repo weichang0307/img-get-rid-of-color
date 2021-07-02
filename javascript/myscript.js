@@ -159,19 +159,23 @@ function keydown(e){
 function readurl(input){
 	if(input.files && input.files[0]){
 		let reader = new FileReader();
-		console.log(1)
 		reader.onload = function (e) {
 			let img_=document.getElementById('img01')
 			img_.src=e.target.result
-			img_.style.display='none'			
-			canvas.style.width=img_.width+'px'
-			canvas.style.height=img_.height+'px'
-			canvas.width=img_.width
-			canvas.height=img_.height
-			if(img_.width===0){
-				alert('failed to get picture.plese reopen the page')
+			img_.onload=function(e){
+				canvas.style.width=img_.width+'px'
+				canvas.style.height=img_.height+'px'
+				canvas.width=img_.width
+				canvas.height=img_.height
+				if(img_.width===0){
+					alert('failed to get picture.plese reopen the page')
+				}
+				drawexcept(img_,0,0,'none') 
 			}
-			drawexcept(img_,0,0,'none')
+			
+			img_.style.display='none'
+
+			
 
 			
 		}

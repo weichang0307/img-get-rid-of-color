@@ -21,7 +21,8 @@ let middle=document.getElementById('middle')
 let h301=document.getElementById('h301')
 let path=document.getElementById('path')
 let copy2=document.getElementById('copy')
-
+let range=document.getElementById('myrange')
+let rh3=document.getElementById('rangeh3')
 
 //全域變數
 let excolor
@@ -47,7 +48,7 @@ function init(){
 		excolor=text01.value
 		let _img=document.getElementById('img01')
 		if(_img.complete&&input01.files && input01.files[0]){
-			drawexcept(_img,0,0,excolor)
+			drawexcept(_img,0,0,excolor,range.value)
 		}
 
 	}
@@ -97,6 +98,10 @@ function init(){
 	copy2.onclick=function(){
 		textarea02.select()
 		document.execCommand('copy');
+	}
+	range.onchange=function(){
+		rh3.innerHTML='range:'+this.value;
+		console.log(1);
 	}
 
 	
@@ -189,7 +194,7 @@ function click(e){
 			text01.value='none'
 		}else{
 			let data=ctx.getImageData(e.pageX,e.pageY,1,1)
-			text01.value='rgb('+data.data[0]+','+data.data[1]+','+data.data[2]+')'
+			text01.value=[data.data[0],data.data[1],data.data[2]]
 		}
 	}else if(mode===1){
 		canvas.style.cursor='default'

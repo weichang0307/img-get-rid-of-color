@@ -1,17 +1,18 @@
-function drawexcept(img,x,y,color){
-	
-	let currentdata=ctx.getImageData(0,0,canvas.width,canvas.height)
+function drawexcept(img,x,y,color,range=0){
+	ctx.clearRect(0,0,canvas.width,canvas.height)
 	ctx.drawImage(img,0,0)
-	let imgdata=ctx.getImageData(0,0,img.width,img.height)
+	let imgdata=ctx.getImageData(0,0,canvas.width,canvas.height)
+	color=color.split(",")
 	for(let i=3;i<imgdata.data.length;i+=4){
 		let r=imgdata.data[i-3]
 		let g=imgdata.data[i-2]
 		let b=imgdata.data[i-1]
-		if(color==='rgb('+r+','+g+','+b+')'){
+		
+		if(Math.abs(r-color[0])+Math.abs(g-color[1])+Math.abs(b-color[2])<=range){
 			imgdata.data[i]=0
 		}
 	}
-	ctx.putImageData(currentdata,0,0)
+	
 	ctx.putImageData(imgdata,x,y)
 }
 //格線
